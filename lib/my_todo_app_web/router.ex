@@ -11,6 +11,8 @@ defmodule MyTodoAppWeb.Router do
 
   pipeline :api do
     plug :accepts, ["json"]
+    # sending :repo to api.auth
+    plug MyTodoAppWeb.Api.Auth, repo: MyTodoApp.Repo
   end
 
   # scope "/", MyTodoAppWeb do
