@@ -13,14 +13,16 @@ defmodule MyTodoAppWeb.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/", MyTodoAppWeb do
-    pipe_through :browser # Use the default browser stack
+  # scope "/", MyTodoAppWeb do
+  #   pipe_through :browser # Use the default browser stack
 
-    get "/", PageController, :index
-  end
+  #   get "/", PageController, :index
+  # end
 
   # Other scopes may use custom stacks.
-  # scope "/api", MyTodoAppWeb do
-  #   pipe_through :api
-  # end
+  scope "/api", MyTodoAppWeb.Api do
+    pipe_through :api
+
+    resources "/users", UserController
+  end
 end
