@@ -22,6 +22,14 @@ config :logger, :console,
   format: "$time $metadata[$level] $message\n",
   metadata: [:request_id]
 
+# Guardian
+config :my_todo_app, MyTodoApp.Guardian,
+allowed_algos: ["HS512"], # optional
+verify_module: Guardian.JWT,  # optional
+issuer: "my_todo_app",
+secret_key: "mVGcIMDQ/t+s+va9f5r9VqsOsvPZNO58jbs7wlVOsRZJz1Z+opLVDVchZxloTVy6",
+serializer: MyTodoAppWeb.GuardianSerializer
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env}.exs"

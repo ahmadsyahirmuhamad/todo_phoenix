@@ -20,7 +20,7 @@ defmodule MyTodoApp.Mixfile do
   def application do
     [
       mod: {MyTodoApp.Application, []},
-      extra_applications: [:logger, :runtime_tools, :comeonin]
+      extra_applications: [:logger, :runtime_tools, :comeonin, :guardian]
     ]
   end
 
