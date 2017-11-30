@@ -11,21 +11,16 @@ defmodule MyTodoAppWeb.Router do
 
   pipeline :api do
     plug :accepts, ["json"]
-    plug Guardian.Plug.Pipeline, module: MyTodoApp.Guardian, error_handler: MyTodoApp.TodoApp.Auth.AuthErrorHandler
-    plug Guardian.Plug.VerifyHeader, claims: %{"typ" => "access"}
-    # plug Guardian.Plug.VerifyHeader, realm: "Bearer"
+    # plug MyTodoApp.TodoApp.Utils.DebugMe
   end
 
   pipeline :ensure_authed_access do
-    plug Guardian.Plug.EnsureAuthenticated
-    # should set handler controller
-    # Lookup a resource directly from a token
-    # set current_user to the resources
+    plug MyTodoApp.AuthAccessPipeline
   end
 
   scope "/api", MyTodoAppWeb.Api do
     pipe_through :api
-    resources "/sessions", SessionController
+    resources "/sessions", SessionController, only: [:create]
   end
 
   scope "/api", MyTodoAppWeb.Api do

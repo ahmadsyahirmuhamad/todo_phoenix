@@ -23,10 +23,16 @@ config :logger, :console,
   metadata: [:request_id]
 
 # Guardian
+config :my_todo_app, MyTodoApp.AuthAccessPipeline,
+  module: MyTodoApp.Guardian,
+  error_handler: MyTodoApp.TodoApp.Auth.AuthErrorHandler
+
 config :my_todo_app, MyTodoApp.Guardian,
 allowed_algos: ["HS512"], # optional
 verify_module: Guardian.JWT,  # optional
 issuer: "my_todo_app",
+ttl: { 30, :days},
+verify_issuer: true,
 secret_key: "mVGcIMDQ/t+s+va9f5r9VqsOsvPZNO58jbs7wlVOsRZJz1Z+opLVDVchZxloTVy6",
 serializer: MyTodoAppWeb.GuardianSerializer
 

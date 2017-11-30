@@ -5,6 +5,8 @@ defmodule MyTodoAppWeb.Api.UserController do
   alias MyTodoApp.TodoApp.User
 
   def index(conn, _params) do
+    require IEx
+    IEx.pry
     users = TodoApp.list_users()
     render(conn, "index.json", users: users)
   end
@@ -32,7 +34,7 @@ defmodule MyTodoAppWeb.Api.UserController do
 
   def delete(conn, %{"id" => id}) do
     user = TodoApp.get_user(id)
-    with {:ok, %User{} = user} <- TodoApp.delete_user(user) do
+    with {:ok, %User{} = _user} <- TodoApp.delete_user(user) do
       conn
         |> send_resp(200, "ok")
     end
