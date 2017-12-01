@@ -32,6 +32,8 @@ defmodule MyTodoApp.TodoApp do
   end
 
   # FOR TODO
+  def get_todo(id), do: Repo.get(Todo, id)
+
   def list_todos(user) do
     Repo.all(Ecto.assoc(user, :todos))
   end

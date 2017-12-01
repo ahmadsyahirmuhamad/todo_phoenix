@@ -10,6 +10,11 @@ defmodule MyTodoAppWeb.Api.TodoController do
     render(conn, "index.json", todos: todos)
   end
 
+  def show(conn, %{"id" => id}) do
+    todo = TodoApp.get_todo(id)
+    render(conn, "show.json", todo: todo)
+  end
+
   def create(conn, todo_params) do
     current_user = conn.assigns.current_user
 
