@@ -20,6 +20,7 @@ defmodule MyTodoAppWeb.Router do
 
   scope "/api", MyTodoAppWeb.Api do
     pipe_through :api
+    resources "/register", RegisterController, only: [:create]
     resources "/sessions", SessionController, only: [:create]
   end
 

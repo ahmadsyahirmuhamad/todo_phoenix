@@ -3,6 +3,10 @@ defmodule MyTodoApp.TodoApp.User do
   import Ecto.Changeset
   alias MyTodoApp.TodoApp.User
 
+  # remove extra attributes eg: __meta__ etc
+  @derive {Poison.Encoder, only: [:email, :first_name, :last_name]}
+
+
   schema "users" do
     field :email, :string
     field :password_hash, :string
