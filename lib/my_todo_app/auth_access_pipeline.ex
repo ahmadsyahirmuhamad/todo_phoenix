@@ -5,7 +5,8 @@ defmodule MyTodoApp.AuthAccessPipeline do
   plug Guardian.Plug.VerifySession
   plug Guardian.Plug.EnsureAuthenticated
   plug Guardian.Plug.LoadResource, allow_blank: true
-  # mostly usefull on website not api
-  # plug MyTodoApp.TodoApp.Auth.CurrentUser
+
+  # conn.assigns.current_user
+  plug MyTodoApp.TodoApp.Auth.CurrentUser
 
 end

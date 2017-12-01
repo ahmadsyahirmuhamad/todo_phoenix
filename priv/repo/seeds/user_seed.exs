@@ -1,7 +1,4 @@
-alias MyTodoApp.TodoApp.User
-alias MyTodoApp.TodoApp.Repo
 alias MyTodoApp.TodoApp
-
 
 user_array = [
   %{

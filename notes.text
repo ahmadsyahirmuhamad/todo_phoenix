@@ -3,6 +3,15 @@ http://hostiledeveloper.com/2016/05/23/guard-this-with-your-life-or-authenticati
 check the resources
 https://github.com/ueberauth/guardian/blob/master/lib/guardian/plug/verify_header.ex
 
+associations changeset
+https://elixircasts.io/adding-comments-with-ecto-associations
+or
+https://medium.com/@Stephanbv/elixir-phoenix-a-todo-and-user-relationship-todo-application-part-4-7c2d80d22dea
+  def create(conn, %{“todo” => todo_params}) do
+    changeset = Guardian.Plug.current_resource(conn)
+    |> build_assoc(:todos)
+    |> Todo.changeset(todo_params)
+
 
 #pry
 require IEx

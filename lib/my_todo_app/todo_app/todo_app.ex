@@ -2,17 +2,14 @@ defmodule MyTodoApp.TodoApp do
   import Ecto.Query, warn: false
   alias MyTodoApp.Repo
   alias MyTodoApp.TodoApp.User
+  alias MyTodoApp.TodoApp.Todo
 
   # use by guardian to get user
   def get_resource_by_id(id) do
     get_user(id)
   end
 
-  # should delete this
-  def list_users do
-    Repo.all(User)
-  end
-
+  # FOR USER
   def get_user(id), do: Repo.get(User, id)
 
   def create_user(attrs \\ %{}) do
@@ -33,4 +30,16 @@ defmodule MyTodoApp.TodoApp do
   def delete_user(%User{} = user) do
     Repo.delete(user)
   end
+
+  # FOR TODO
+  def list_todos(user) do
+    Repo.all(Ecto.assoc(user, :todos))
+  end
+
+  def create_todo(current_user, attrs \\ %{}) do
+    Todo.changeset(:create, %Todo{user: current_user}, attrs)
+      |> Repo.insert()
+  end
+
 end
+
