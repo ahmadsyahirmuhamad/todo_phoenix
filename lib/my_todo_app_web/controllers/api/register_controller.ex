@@ -12,7 +12,7 @@ defmodule MyTodoAppWeb.Api.RegisterController do
         conn
         |> assign(:user, user)
         |> sign_in(user)
-        |> render("new_user.json")
+        |> render("create.json")
       {:error, _} ->
         conn
           |> render("error.json")

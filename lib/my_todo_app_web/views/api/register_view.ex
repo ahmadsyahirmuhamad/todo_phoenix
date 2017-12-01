@@ -1,7 +1,7 @@
 defmodule MyTodoAppWeb.Api.RegisterView do
   use MyTodoAppWeb, :view
 
-  def render("new_user.json", %{jwt: jwt, user: user} = params ) do
+  def render("create.json", %{jwt: jwt, user: user} = params ) do
     %{ data: %{ user: user, jwt: jwt } }
   end
 

@@ -4,7 +4,7 @@ defmodule MyTodoApp.TodoApp.User do
   alias MyTodoApp.TodoApp.User
 
   # remove extra attributes eg: __meta__ etc
-  @derive {Poison.Encoder, only: [:email, :first_name, :last_name]}
+  @derive {Poison.Encoder, only: [:id, :email, :first_name, :last_name]}
 
 
   schema "users" do

@@ -26,7 +26,7 @@ defmodule MyTodoAppWeb.Router do
 
   scope "/api", MyTodoAppWeb.Api do
     pipe_through([:api, :ensure_authed_access])
-    resources "/users", UserController
+    resources "/users", UserController, only: [:show, :update, :destroy]
   end
 
 end
