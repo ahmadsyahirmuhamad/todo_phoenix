@@ -3,10 +3,12 @@ defmodule MyTodoApp.TodoApp do
   alias MyTodoApp.Repo
   alias MyTodoApp.TodoApp.User
 
+  # use by guardian to get user
   def get_resource_by_id(id) do
     get_user(id)
   end
 
+  # should delete this
   def list_users do
     Repo.all(User)
   end
