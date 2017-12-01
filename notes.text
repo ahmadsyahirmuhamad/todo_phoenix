@@ -1,1 +1,24 @@
 http://hostiledeveloper.com/2016/05/23/guard-this-with-your-life-or-authenticating-apis-with-guardian.html
+
+check the resources
+https://github.com/ueberauth/guardian/blob/master/lib/guardian/plug/verify_header.ex
+
+
+#pry
+require IEx
+IEx.pry
+
+#token example
+Bearer: eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJteV90b2RvX2FwcCIsImV4cCI6MTUxNDcxNzg3NCwiaWF0IjoxNTEyMTI1ODc0LCJpc3MiOiJteV90b2RvX2FwcCIsImp0aSI6ImUxMGI4MzBmLTU1MTItNDkyNC04Mzk1LTUxZTZiYzE2ZTA1YiIsIm5iZiI6MTUxMjEyNTg3Mywic3ViIjoiMSIsInR5cCI6ImFjY2VzcyJ9.0WC_od8rBDs2WTEnlt_--Qrw-aX3cHi05JDI7X0sc8k-Hxv_eP3DERatyAU7kB7NmPZHHkb8KsIWqPLpnsaTig
+
+#check headers
+headers = get_req_header(conn, "authorization")
+
+# Fetch the information from the current connection
+token = MyTodoApp.Guardian.Plug.current_token(conn)
+claims = MyTodoApp.Guardian.Plug.current_claims(conn)
+resource = MyTodoApp.Guardian.Plug.current_resource(conn)
+
+
+
+

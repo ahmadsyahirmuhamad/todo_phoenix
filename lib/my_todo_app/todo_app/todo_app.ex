@@ -3,6 +3,10 @@ defmodule MyTodoApp.TodoApp do
   alias MyTodoApp.Repo
   alias MyTodoApp.TodoApp.User
 
+  def get_resource_by_id(id) do
+    get_user(id)
+  end
+
   def list_users do
     Repo.all(User)
   end

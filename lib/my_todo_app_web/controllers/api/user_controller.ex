@@ -5,8 +5,6 @@ defmodule MyTodoAppWeb.Api.UserController do
   alias MyTodoApp.TodoApp.User
 
   def index(conn, _params) do
-    require IEx
-    IEx.pry
     users = TodoApp.list_users()
     render(conn, "index.json", users: users)
   end

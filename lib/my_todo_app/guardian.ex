@@ -1,5 +1,6 @@
 defmodule MyTodoApp.Guardian do
   use Guardian, otp_app: :my_todo_app
+  alias MyTodoApp.TodoApp
 
   def subject_for_token(resource, _claims) do
     # You can use any value for the subject of your token but
@@ -20,7 +21,7 @@ defmodule MyTodoApp.Guardian do
     # found in the `"sub"` key. In `above subject_for_token/2` we returned
     # the resource id so here we'll rely on that to look it up.
     id = claims["sub"]
-    resource = MyTodoApp.get_resource_by_id(id)
+    resource = TodoApp.get_resource_by_id(id)
     {:ok,  resource}
   end
 
@@ -28,3 +29,6 @@ defmodule MyTodoApp.Guardian do
     {:error, :reason_for_error}
   end
 end
+
+# notes
+# mostly responsible to get user information from resources
