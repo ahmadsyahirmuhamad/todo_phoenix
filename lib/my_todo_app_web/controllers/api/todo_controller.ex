@@ -28,4 +28,17 @@ defmodule MyTodoAppWeb.Api.TodoController do
     end
   end
 
+  def update(conn, %{"id" => id, "todo" => todo_params}) do
+    current_user = conn.assigns.current_user
+    todo = TodoApp.get_todo(id)
+    case TodoApp.update_todo(todo, todo_params) do
+      {:ok, %Todo{} = todo} ->
+        conn
+        |> render("show.json", todo: todo)
+      {:error, changeset} ->
+        conn
+        |> render("error.json")
+    end
+  end
+
 end

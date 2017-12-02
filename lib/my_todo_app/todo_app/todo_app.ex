@@ -43,5 +43,10 @@ defmodule MyTodoApp.TodoApp do
       |> Repo.insert()
   end
 
+  def update_todo(%Todo{} = todo, attrs) do
+    Todo.changeset(:update, todo, attrs)
+      |> Repo.update()
+  end
+
 end
 

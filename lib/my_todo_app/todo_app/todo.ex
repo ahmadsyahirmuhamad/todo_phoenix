@@ -26,8 +26,8 @@ defmodule MyTodoApp.TodoApp.Todo do
 
   def changeset(:update, %Todo{} = struct, attrs) do
     struct
-      |> cast(attrs, [:id, :user_id, :title, :description])
-      |> validate_required([:id, :user_id, :title, :description])
+      |> cast(attrs, [:id, :title, :description])
+      |> validate_required([:id, :title, :description])
   end
 
 end
