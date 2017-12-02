@@ -26,8 +26,8 @@ defmodule MyTodoAppWeb.Router do
 
   scope "/api", MyTodoAppWeb.Api do
     pipe_through([:api, :ensure_authed_access])
-    resources "/users", UserController, only: [:show, :update, :destroy]
-    resources "/todos", TodoController, only: [:index, :show, :create, :update]
+    resources "/users", UserController, only: [:show, :update, :delete]
+    resources "/todos", TodoController, only: [:index, :show, :create, :update, :delete]
     # change password
   end
 

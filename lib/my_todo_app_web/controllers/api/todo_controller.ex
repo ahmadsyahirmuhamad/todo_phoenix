@@ -41,4 +41,16 @@ defmodule MyTodoAppWeb.Api.TodoController do
     end
   end
 
+  def delete(conn, %{"id" => id}) do
+    todo = TodoApp.get_todo(id)
+    case TodoApp.delete_todo(todo) do
+      {:ok, %Todo{} = todo} ->
+        conn
+        |> render("show.json", todo: todo)
+      :error ->
+        conn
+        |> render("error.json")
+    end
+  end
+
 end

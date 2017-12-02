@@ -48,5 +48,9 @@ defmodule MyTodoApp.TodoApp do
       |> Repo.update()
   end
 
+  def delete_todo(%Todo{} = todo) do
+    Repo.delete(todo)
+  end
+
 end
 
