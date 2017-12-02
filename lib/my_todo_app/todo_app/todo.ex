@@ -4,12 +4,13 @@ defmodule MyTodoApp.TodoApp.Todo do
   alias MyTodoApp.TodoApp.Todo
 
   # remove extra attributes eg: __meta__ etc
-  @derive {Poison.Encoder, only: [:id, :user_id, :title, :description]}
+  @derive {Poison.Encoder, only: [:id, :user_id, :title, :description, :completed]}
 
 
   schema "todos" do
     field :title, :string
     field :description, :string
+    field :completed, :boolean, default: false
 
     # associations
     belongs_to :user, MyTodoApp.TodoApp.User
@@ -28,6 +29,12 @@ defmodule MyTodoApp.TodoApp.Todo do
     struct
       |> cast(attrs, [:id, :title, :description])
       |> validate_required([:id, :title, :description])
+  end
+
+  def changeset(:completed, %Todo{} = struct, attrs) do
+    struct
+      |> cast(attrs, [:id, :completed])
+      |> validate_required([:id, :completed])
   end
 
 end

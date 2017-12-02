@@ -29,7 +29,6 @@ defmodule MyTodoAppWeb.Api.TodoController do
   end
 
   def update(conn, %{"id" => id, "todo" => todo_params}) do
-    current_user = conn.assigns.current_user
     todo = TodoApp.get_todo(id)
     case TodoApp.update_todo(todo, todo_params) do
       {:ok, %Todo{} = todo} ->
@@ -44,6 +43,18 @@ defmodule MyTodoAppWeb.Api.TodoController do
   def delete(conn, %{"id" => id}) do
     todo = TodoApp.get_todo(id)
     case TodoApp.delete_todo(todo) do
+      {:ok, %Todo{} = todo} ->
+        conn
+        |> render("show.json", todo: todo)
+      :error ->
+        conn
+        |> render("error.json")
+    end
+  end
+
+  def completed(conn, %{"todo_id" => todo_id, "todo" => todo_params}) do
+    todo = TodoApp.get_todo(todo_id)
+    case TodoApp.completed_todo(todo, todo_params) do
       {:ok, %Todo{} = todo} ->
         conn
         |> render("show.json", todo: todo)

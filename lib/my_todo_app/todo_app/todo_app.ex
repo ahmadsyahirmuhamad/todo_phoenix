@@ -48,6 +48,11 @@ defmodule MyTodoApp.TodoApp do
       |> Repo.update()
   end
 
+  def completed_todo(%Todo{} = todo, attrs) do
+    Todo.changeset(:completed, todo, attrs)
+      |> Repo.update()
+  end
+
   def delete_todo(%Todo{} = todo) do
     Repo.delete(todo)
   end
